@@ -1,6 +1,7 @@
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers, backend as K
+from model import extractor_model
 
 import numpy as np
 import cv2
@@ -21,7 +22,8 @@ def export_model(image, extractor, classifier):
     return pred
 
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-extractor = keras.models.load_model('facemodel')
+extractor = extractor_model()
+extractor.load_weights('face_model.h5')
 classifier = joblib.load('final_classifier.sav')
 
 cap = cv2.VideoCapture(0)
