@@ -5,7 +5,7 @@ from model import extractor_model
 
 import numpy as np
 import cv2
-import matplotlib.pyplot as plt
+
 import joblib
 
 
@@ -38,9 +38,9 @@ while True:
         face = frame[y:y + h, x:x + w]
 
         face = np.resize(face, (100, 100, 3))
-        print(np.shape(face))
+
         prediction = export_model(face, extractor, classifier)
-        print(prediction)
+
 
         cv2.putText(frame, classes[prediction[0]], (18, 20), cv2.FONT_HERSHEY_COMPLEX, 2, (255, 0, 0), thickness=2)
         cv2.rectangle(frame, pt1=(x, y), pt2=(x + w, y + h), color=(225, 0, 0), thickness=2)
