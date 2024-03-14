@@ -38,11 +38,9 @@ while True:
         face = frame[y:y + h, x:x + w]
 
         face = np.resize(face, (100, 100, 3))
-
         prediction = export_model(face, extractor, classifier)
 
-
-        cv2.putText(frame, classes[prediction[0]], (18, 20), cv2.FONT_HERSHEY_COMPLEX, 2, (255, 0, 0), thickness=2)
+        cv2.putText(frame, classes[prediction[0]], (x, y), cv2.FONT_HERSHEY_COMPLEX, .75, (255, 0, 0), thickness=2)
         cv2.rectangle(frame, pt1=(x, y), pt2=(x + w, y + h), color=(225, 0, 0), thickness=2)
 
     cv2.imshow('frame', cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
