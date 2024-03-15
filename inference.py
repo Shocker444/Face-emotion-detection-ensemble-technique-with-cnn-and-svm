@@ -13,7 +13,7 @@ rescale = layers.Rescaling(scale=1./255.0)
 classes = ['suprise', 'fear', 'disgust', 'happy','sad', 'angry', 'neutral']
 def export_model(image, extractor, classifier):
     image = rescale(image)
-    layer_output = K.function(inputs = extractor.layers[0].input, outputs = extractor.layers[3].output)
+    layer_output = K.function(inputs = extractor.layers[0].input, outputs = extractor.layers[-2].output)
 
     extracted = layer_output(image[tf.newaxis])
 
@@ -23,8 +23,8 @@ def export_model(image, extractor, classifier):
 
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 extractor = extractor_model()
-extractor.load_weights('face_model.h5')
-classifier = joblib.load('final_classifier.sav')
+extractor.load_weights('face_model2.h5')
+classifier = joblib.load('final_classifier3.sav')
 
 cap = cv2.VideoCapture(0)
 
