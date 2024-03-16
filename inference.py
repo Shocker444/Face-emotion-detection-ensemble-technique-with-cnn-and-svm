@@ -9,7 +9,7 @@ import cv2
 import joblib
 
 
-rescale = layers.Rescaling(scale=1./255.0)
+rescale = layers.Rescaling(scale=1./127.5, offset=-1)
 classes = ['suprise', 'fear', 'disgust', 'happy','sad', 'angry', 'neutral']
 def export_model(image, extractor, classifier):
     image = rescale(image)
@@ -37,7 +37,7 @@ while True:
     for (x, y, w, h) in faces:
         face = frame[y:y + h, x:x + w]
 
-        face = np.resize(face, (100, 100, 3))
+        face = np.resize(face, (224, 224, 3))
         prediction = export_model(face, extractor, classifier)
 
         cv2.putText(frame, classes[prediction[0]], (x, y), cv2.FONT_HERSHEY_COMPLEX, .75, (255, 0, 0), thickness=2)
