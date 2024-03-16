@@ -23,7 +23,7 @@ def export_model(image, extractor, classifier):
 
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 extractor = extractor_model()
-extractor.load_weights('face_model2.h5')
+extractor.load_weights('facemodel2.h5')
 classifier = joblib.load('final_classifier3.sav')
 
 cap = cv2.VideoCapture(0)
